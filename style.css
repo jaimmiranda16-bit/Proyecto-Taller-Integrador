@@ -1,6 +1,8 @@
 *{
+    box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    
 }
 
 html{
@@ -15,4 +17,24 @@ html{
 .canvas {
     border: 1px solid black;
     background-color: #dbeafe;
+}
+
+body{
+    background-color:#E1E8ED;
+}
+
+//esto eh para que veas y lo califiques luego jaime o tester//
+.barraDEnavegacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: ##363B3E;
+    padding: 12px 24px;
+    border-bottom:1px solid #1F1B1B
+    color:#ffffff;
+    
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #657786;
 }
