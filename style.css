@@ -5,13 +5,20 @@
 }
 
 :root{
-    --verde-oscuro:#234B4B;
-    --verde:#4E8068;
-    --crema:#F5F1E8;
-    --blanco:#FFFFFF;
-    --gris:#6F7772;
-    --verde-menta:#B7DCCB;
-    --verde-salvia:#A8C3B0;
+    /* Colores principales */
+    --azul-principal: #0078D2;
+    --azul-secundario: #55ACEE;
+
+    /* Grises */
+    --gris-oscuro: #292F33;
+    --gris: #66757F;
+    --gris-claro: #a4a2a2;
+    --gris-muy-claro: #CCD6DD;
+
+    /* Fondos claros */
+    --fondo-claro: #EEF3FB;
+    --blanco: #FDFDFD;
+    --blanco-claro: #E1E8ED;
 }
 
 
@@ -27,7 +34,7 @@ body{
 }
 .encabezado{
    position: relative;
-   background-color: black;
+   background-color:var(--gris);
 }
 
 .head{
@@ -114,7 +121,7 @@ ul{
 .pie-pagina{
     position: relative;
     overflow: hidden;
-    background-color: #6F7772;
+    background-color: var(--gris-claro);
     color: var(--crema);
     padding: 50px;
 }
@@ -174,6 +181,7 @@ ul{
 
 .box figure img{
     width: 250px;
+    border-radius: 2rem;
 }
 
 .box h2{
