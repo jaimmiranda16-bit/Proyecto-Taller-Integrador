@@ -39,6 +39,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #657786;
 }
 
+a{
+    color:#292F33;
+    background-color:#EEF3FB;
+}
+
 .navbar {
   display: flex;
   align-items: center;
