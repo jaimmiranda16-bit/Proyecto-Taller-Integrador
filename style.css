@@ -450,7 +450,7 @@ ul{
     background-color: #dbeafe;
 }
 
-<<<<<<< HEAD
+
 .pie-pagina{
     position: relative;
     overflow: hidden;
@@ -597,22 +597,21 @@ ul{
 
     }
 
-=======
-body{
-    background-color:#E1E8ED;
 }
+/* body{
+    background-color:#E1E8ED;
+} */
 
-//esto eh para que veas y lo califiques luego jaime o tester//
-.barraDEnavegacion {
+/* esto eh para que veas y lo califiques luego jaime o tester */
+ /* .barraDEnavegacion {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: ##363B3E;
+    background-color: #363B3E;
     padding: 12px 24px;
-    border-bottom:1px solid #1F1B1B
+    border-bottom:1px solid #1F1B1B;
     color:#ffffff;
-    
-}
+} 
 
 h1, h2, h3, h4, h5, h6 {
   color: #657786;
@@ -642,7 +641,7 @@ logo-sub {
 .widget-clima {
   min-width: 150px;
   height: 40px;
-  border: 1px 
+  border: 1px ;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -661,5 +660,4 @@ logo-sub {
   align-items: center;
   gap: 12px;        
   z-index: 1000;    
->>>>>>> 5a6b01e158baedff09a388ef8735a57817a2fb12
-}
+} */
