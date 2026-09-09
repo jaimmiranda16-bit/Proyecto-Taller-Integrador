@@ -39,6 +39,40 @@ h1, h2, h3, h4, h5, h6 {
   color: #657786;
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 12px 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+logo-sub {
+  font-size: 11px;
+  color: #0091ea;
+  margin-top: 2px;
+}
+
+.widget-clima {
+  min-width: 150px;
+  height: 40px;
+  border: 1px 
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 13px;
+  background-color: #f9f9f9;
+}
+
 .map-controls {
   position: fixed;
   top: 120px;       
