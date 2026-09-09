@@ -1,7 +1,12 @@
 *{
+    box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+<<<<<<< HEAD
     box-sizing: border-box;
+=======
+    
+>>>>>>> 5a6b01e158baedff09a388ef8735a57817a2fb12
 }
 
 :root{
@@ -448,6 +453,7 @@ ul{
     background-color: #dbeafe;
 }
 
+<<<<<<< HEAD
 .pie-pagina{
     position: relative;
     overflow: hidden;
@@ -594,4 +600,35 @@ ul{
 
     }
 
+=======
+body{
+    background-color:#E1E8ED;
+}
+
+//esto eh para que veas y lo califiques luego jaime o tester//
+.barraDEnavegacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: ##363B3E;
+    padding: 12px 24px;
+    border-bottom:1px solid #1F1B1B
+    color:#ffffff;
+    
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #657786;
+}
+
+.map-controls {
+  position: fixed;
+  top: 120px;       
+  right: 20px;      
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;        
+  z-index: 1000;    
+>>>>>>> 5a6b01e158baedff09a388ef8735a57817a2fb12
 }
