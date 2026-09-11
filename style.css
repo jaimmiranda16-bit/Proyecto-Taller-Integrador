@@ -1,5 +1,3 @@
-
-
 * {
     box-sizing: border-box;
     padding: 0px;
@@ -7,15 +5,12 @@
 }
 
 :root {
-    
     --azul-principal: #0078D2;
     --azul-secundario: #55ACEE;
-   
     --gris-oscuro: #292F33;
     --gris: #66757F;
     --gris-claro: #a4a2a2;
     --gris-muy-claro: #CCD6DD;
-
     --fondo-claro: #EEF3FB;
     --blanco: #FDFDFD;
     --blanco-claro: #E1E8ED;
@@ -24,8 +19,6 @@
 html {
     scroll-behavior: smooth;
 }
-
-/* ================= TIPOGRAFÍAS Y ENLACES ================= */
 
 h1, h2, h3, h4, h5, h6 {
     color: #657786;
@@ -40,8 +33,6 @@ a {
     background-color: #292F33;
 }
 
-/* ================= ESTRUCTURA BASE ================= */
-
 body {
     min-height: 100vh;
     display: flex;
@@ -55,75 +46,64 @@ span {
 .encabezado {
     position: relative;
     background-color: var(--gris);
+    width: 100%;
 }
 
 .head {
     width: 100%;
-    padding: 15px 5%;
+    padding: 10px 3%;
 }
-
-/* ================= NAVEGACIÓN ================= */
-
-nav {
-    display: flex;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-}
-
-.barraDEnavegacion {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #363B3E;
-    padding: 12px 24px;
-    border-bottom: 1px solid #1F1B1B;
-    color: #ffffff;
-} 
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
-    padding: 12px 24px;
-    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    gap: 20px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    padding-right: 600px;
+    gap: 10px;
+    text-decoration: none;
 }
 
 .logo img {
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .logo-sub {
-    font-size: 11px;
-    color: #0091ea;
-    margin-top: 2px;
+    font-size: 13px;
+    color: var(--blanco);
+    font-weight: 500;
+}
+
+nav {
+    display: flex;
+    align-items: center;
 }
 
 ul {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 20px;
     list-style: none;
 }
 
 .enlaces {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 20px;
     position: relative;
-    padding: 8px 14px;
-    transition: .3s ease;
+    padding: 8px 16px;
+    transition: 0.3s ease;
+    white-space: nowrap;
 }
 
 .enlaces:hover {
@@ -137,50 +117,20 @@ ul {
     font-weight: 600;
 }
 
-.enlaces.activo::after {
-    content: "";
-    position: absolute;
-    bottom: 3px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--blanco-claro);
-    transform: translateX(-50%);
-    transition: .3s ease;
-}
-
-.enlaces.activo:hover::after,
-.enlaces.activo::after {
-    width: 45%;
-}
-
-/* ================= WIDGETS Y CONTROLES ADICIONALES ================= */
-
 .widget-clima {
-    min-width: 150px;
+    min-width: 140px;
     height: 40px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #777;
+    color: #333;
     font-size: 13px;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0 15px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
-.map-controls {
-    position: fixed;
-    top: 120px;       
-    right: 20px;      
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;        
-    z-index: 1000;    
-}
-
-/* ================= MAPA ================= */
 
 main {
     flex: 1;
@@ -201,20 +151,16 @@ main {
     box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
 }
 
-#canvas, .canvas {
+#canvas {
     width: 100%;
     height: 100%;
     display: block;
     cursor: grab;
-    border: 1px solid black;
-    background-color: #dbeafe;
 }
 
 #canvas:active {
     cursor: grabbing;
 }
-
-/* ================= TITULO MAPA ================= */
 
 .titulo-mapa {
     position: absolute;
@@ -231,8 +177,6 @@ main {
     font-size: 25px;
     margin-right: 8px;
 }
-
-/* ================= OPCIONES ================= */
 
 .opciones {
     position: absolute;
@@ -261,8 +205,6 @@ main {
     accent-color: var(--azul-principal);
 }
 
-/* ================= CONTROLES DEL MAPA ================= */
-
 .controles {
     position: absolute;
     right: 25px;
@@ -289,8 +231,6 @@ main {
     transform: scale(1.08);
 }
 
-/* ================= INFO LUGAR ================= */
-
 .informacion-lugar {
     position: absolute;
     left: 20px;
@@ -312,8 +252,6 @@ main {
 .informacion-lugar p {
     margin-top: 3px;
 }
-
-/* ================= TIMELINE ================= */
 
 .timeline {
     position: absolute;
@@ -359,8 +297,6 @@ main {
     border-radius: 5px;
     font-size: 15px;
 }
-
-/* ================= PIE DE PÁGINA ================= */
 
 .pie-pagina {
     position: relative;
@@ -438,16 +374,14 @@ main {
     letter-spacing: 3px;
 }
 
-/* ================= RESPONSIVE ================= */
-
 @media (max-width: 900px) {
-    nav {
+    .navbar {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
     }
 
     ul {
-        gap: 5px;
+        gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -474,4 +408,4 @@ main {
         grid-template-columns: 1fr;
         text-align: center;
     }
-} 
+}
