@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,129 +8,66 @@
     <title>Viento con Canvas</title>
 </head>
 <body>
-     <header class="encabezado">
+
+    <header class="encabezado">
         <div class="head">
-            <!-- <section class="">
-                <video src=""></video>
-            </section> -->
-            <nav>
+            <nav class="navbar">
                 <a href="#" class="logo">
                     <img src="/FOTOS/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
+                    <span class="logo-sub">Clima & Viento</span>
                 </a>
+                
                 <ul>
-                    <li><a href="/index.html" class="enlaces">Inicio</a></li>
-                    <li><a href="" class="enlaces"> Tiempo</a></li>
-                    <li><a href="" class="enlaces">Sobre nosotros</a></li>
-                    <li><a href="" class="enlaces">Algo más</a></li>
+                    <li><a href="/index.html" id="inicio" class="enlaces activo">Inicio</a></li>
+                    <li><a href="#" class="enlaces">Tiempo</a></li>
+                    <li><a href="#" class="enlaces">Sobre nosotros</a></li>
+                    <li><a href="#" class="enlaces">Algo más</a></li>
                 </ul>
+
+                <div class="widget-clima">
+                    <span>🌤️ 22°C - Soleado</span>
+                </div>
             </nav>
         </div>
-     </header>
-      <!-- ================= MAPA ================= -->
+    </header>
 
     <main>
         <div class="mapa-container">
             <canvas id="canvas"></canvas>
-            <!-- INFORMACIÓN SUPERIOR -->
 
             <div class="titulo-mapa">
-
                 <span class="icono-viento">〰</span>
-
-                <strong>
-                    Viento y condiciones meteorológicas
-                </strong>
-
+                <strong>Viento y condiciones meteorológicas</strong>
             </div>
-
-
-            <!-- OPCIONES -->
 
             <div class="opciones">
-
                 <label>
-
-                    <input
-                        type="checkbox"
-                        id="particulas"
-                        checked>
-
-                    <span>
-                        Animación de partículas
-                    </span>
-
+                    <input type="checkbox" id="particulas" checked>
+                    <span>Animación de partículas</span>
                 </label>
 
-
                 <label>
-
-                    <input
-                        type="checkbox"
-                        id="lluvia"
-                        checked>
-
-                    <span>
-                        Precipitación
-                    </span>
-
+                    <input type="checkbox" id="lluvia" checked>
+                    <span>Precipitación</span>
                 </label>
-
             </div>
 
-
-            <!-- BOTONES -->
-
-            <div class="controles">
-
-                <button id="zoomMas">
-                    +
-                </button>
-
-                <button id="zoomMenos">
-                    −
-                </button>
-
-                <button id="centrar">
-                    ⌂
-                </button>
-
+            <div class="controles map-controls">
+                <button id="zoomMas">+</button>
+                <button id="zoomMenos">−</button>
+                <button id="centrar">⌂</button>
             </div>
 
-
-            <!-- INFORMACIÓN DEL LUGAR -->
-
-            <div
-                class="informacion-lugar"
-                id="informacionLugar">
-
-                <strong>
-                    Mapa meteorológico
-                </strong>
-
-                <p>
-                    Arrastrá el mapa para desplazarte
-                </p>
-
-                <p>
-                    Usá la rueda para hacer zoom
-                </p>
-
+            <div class="informacion-lugar" id="informacionLugar">
+                <strong>Mapa meteorológico</strong>
+                <p>Arrastrá el mapa para desplazarte</p>
+                <p>Usá la rueda para hacer zoom</p>
             </div>
-
-
-            <!-- ================= LINEA DE TIEMPO ================= -->
 
             <div class="timeline">
-
-                <button
-                    id="play"
-                    class="play">
-                    ▶
-                </button>
-
+                <button id="play" class="play">▶</button>
 
                 <div class="horas">
-
                     <span>16:00</span>
                     <span>17:00</span>
                     <span>18:00</span>
@@ -141,33 +78,24 @@
                     <span>23:00</span>
                     <span>00:00</span>
                     <span>01:00</span>
-
-                    <span
-                        id="horaActual"
-                        class="hora-activa">
-                        02:00
-                    </span>
-
+                    <span id="horaActual" class="hora-activa">02:00</span>
                     <span>03:00</span>
                     <span>04:00</span>
                     <span>05:00</span>
                     <span>06:00</span>
                     <span>07:00</span>
                     <span>08:00</span>
-
                 </div>
-
             </div>
-
         </div>
-
     </main>
-     <footer>
+
+    <footer>
         <div class="pie-pagina">
             <div class="grupo-1">
                 <div class="box">
                     <figure>
-                        <a href="">
+                        <a href="#">
                             <img src="/FOTOS/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
                         </a>
                     </figure>
@@ -178,13 +106,13 @@
                 </div>
                 <div class="box">
                     <h2>INTEGRANTES</h2>
-                    <p><span>Diseño de la pagina:</span> Nehemias Almendra y Patricio Garcia</p>
-                    <p><span>Frontend:</span> Valentino valenzuela y Jaim Miranda</p>
-                    <p><span>Lider del equipo:</span> Martin Bautista</p>
+                    <p><span>Diseño de la página:</span> Nehemias Almendra y Patricio Garcia</p>
+                    <p><span>Frontend:</span> Valentino Valenzuela y Jaime Miranda</p>
+                    <p><span>Líder del equipo:</span> Martin Bautista</p>
                 </div>
             </div>
         </div>
-     </footer>
+    </footer>
 
     <script src="script.js"></script>
 </body>
