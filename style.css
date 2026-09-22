@@ -270,7 +270,7 @@ main {
     cursor: pointer;
 }
 
-.horas {
+.horas div{
     flex: 1;
     display: flex;
     align-items: center;
@@ -279,18 +279,18 @@ main {
     overflow: hidden;
 }
 
-.horas span {
+.horas div span {
     color: white;
-    font-size: 13px;
-    padding: 8px;
+    font-size: 25px;
+    padding: 0 10px;
     white-space: nowrap;
+    font-weight: 500;
 }
 
-.horas .hora-activa {
+.horas div .hora-activa {
     background: var(--azul-principal);
     font-weight: bold;
     border-radius: 5px;
-    font-size: 15px;
 }
 
 .pie-pagina {
