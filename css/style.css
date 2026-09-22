@@ -28,11 +28,6 @@ a {
     color: #292F33;
 }
 
-#inicio {
-    color: #FDFDFD;
-    background-color: #292F33;
-}
-
 body {
     min-height: 100vh;
     display: flex;

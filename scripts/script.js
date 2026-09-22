@@ -1263,35 +1263,31 @@ botonPlay.addEventListener(
 // CAMBIAR HORA
 // =====================================================
 
-setInterval(
-    function () {
+function actualizarHoraActual() {
+    // 1. Obtener la hora local formateada (ej. "18:00")
+    const ahora = new Date();
+    const horaFormateada = String(ahora.getHours()).padStart(2, '0') + ':00';
 
-        if (!reproduciendo) {
+    // 2. Obtener todos los spans dentro del contenedor .horas
+    const elementosHoras = document.querySelectorAll('.horas span');
 
-            return;
+    elementosHoras.forEach(span => {
+        // Quitar la clase activa de todos los elementos
+        span.classList.remove('hora-activa');
 
+        // Asignar la clase únicamente al span que coincide con la hora actual
+        if (span.textContent.trim() === horaFormateada) {
+            span.classList.add('hora-activa');
         }
+    });
+}
 
-
-        horaActual++;
-
-
-        if (
-            horaActual >=
-            horas.length
-        ) {
-
-            horaActual = 0;
-
-        }
-
-
-        textoHora.textContent =
-            horas[horaActual];
-
-    },
-    1000
-);
+// Ejecutar al cargar la página
+window.addEventListener('load', () => {
+    actualizarHoraActual();
+    // Opcional: Revisa la hora cada minuto por si cambia la hora mientras la página está abierta
+    setInterval(actualizarHoraActual, 60000); 
+});
 
 
 // =====================================================
