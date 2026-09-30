@@ -1,0 +1,468 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --azul-principal: #0078D2;
+    --azul-secundario: #55ACEE;
+    --gris-oscuro: #292F33;
+    --gris: #000000f8;
+    --gris-claro: #a4a2a2;
+    --gris-muy-claro: #CCD6DD;
+    --fondo-claro: #EEF3FB;
+    --blanco: #FDFDFD;
+    --blanco-claro: #E1E8ED;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #657786;
+}
+
+a{
+    text-decoration: none;
+}
+
+body {
+    background-color: #0b0f12;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+span {
+    color: var(--azul-principal);
+}
+
+.encabezado {
+    position: relative;
+    background-color: var(--gris);
+    width: 100%;
+}
+
+.head {
+    width: 100%;
+    padding: 10px 3%;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logo-sub {
+    font-size: 13px;
+    color: var(--blanco);
+    font-weight: 500;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.enlaces {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 20px;
+    position: relative;
+    padding: 8px 16px;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.enlaces:hover {
+    color: black;
+    background-color: var(--blanco-claro);
+}
+
+.enlaces.activo {
+    color: black;
+    background-color: var(--blanco-claro);
+    font-weight: 600;
+}
+
+.widget-clima {
+    min-width: 140px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0 15px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.widget-clima {
+    background-color: #1b2631;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid #2c3e50;
+}
+
+/* Dashboard Principal */
+.dashboard-main {
+    padding: 20px 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* KPIs Superiores */
+.kpi-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.kpi-card {
+    background-color: #151b22;
+    border: 1px solid #212d3b;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kpi-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #8b949e;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.kpi-valor {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+
+.kpi-footer {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.kpi-footer.verde { color: #2ea043; }
+.kpi-footer.amarillo { color: #d29922; }
+
+/* Contenedor del Mapa / Canvas */
+.mapa-container {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background-color: #10161d;
+    border: 1px solid #212d3b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Paneles flotantes del mapa */
+.informacion-lugar {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    background: rgba(18, 24, 31, 0.9);
+    border: 1px solid #30363d;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    width: 220px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.informacion-lugar p {
+    margin-top: 5px;
+    color: #c9d1d9;
+}
+
+.titulo-mapa {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(18, 24, 31, 0.9);
+    border: 1px solid #30363d;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.opciones {
+    position: absolute;
+    top: 75px;
+    right: 25px;
+    background: rgba(18, 24, 31, 0.9);
+    border: 1px solid #30363d;
+    padding: 12px 18px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.opciones label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Controles de Zoom Lateral */
+.controles {
+    position: absolute;
+    right: 25px;
+    bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.controles button {
+    width: 40px;
+    height: 40px;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.controles button:hover {
+    background-color: #374151;
+}
+
+/* Puntos de Zonas en el mapa */
+.punto-zona {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 8px rgba(255, 75, 75, 0.5);
+    transform: translate(-50%, -50%);
+}
+
+.tooltip-zona {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    padding: 2px 6px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Timeline inferior */
+.timeline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    background-color: rgba(15, 20, 26, 0.95);
+    border-top: 1px solid #212d3b;
+    display: flex;
+    align-items: center;
+}
+
+.play {
+    width: 55px;
+    height: 55px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid #212d3b;
+    color: #00b894;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.horas {
+    flex: 1;
+    padding: 0 20px;
+    color: #8b949e;
+    font-size: 13px;
+}
+
+.horas .hora-activa {
+    background-color: #00b894;
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .kpi-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+.pie-pagina {
+    position: relative;
+    overflow: hidden;
+    background-color: #121212;
+    color: var(--crema);
+    padding: 10px;
+}
+
+.pie-pagina::before,
+.pie-pagina::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: var(--blanco-claro);
+    opacity: .30;
+    animation: mover 8s ease-in-out infinite alternate;
+}
+
+.pie-pagina::before {
+    width: 250px;
+    height: 250px;
+    top: -120px;
+    left: -80px;
+}
+
+.pie-pagina::after {
+    width: 300px;
+    height: 300px;
+    bottom: -180px;
+    right: -100px;
+    animation-delay: 2s;
+}
+
+@keyframes mover {
+    from {
+        transform: translateY(0) scale(1);
+    }
+    to {
+        transform: translateY(30px) scale(1.1);
+    }
+}
+
+.grupo-1 {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 45px 0px;
+}
+
+.box figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box figure img {
+    width: 250px;
+    border-radius: 2rem;
+}
+
+.box h2 {
+    color: var(--blanco-claro);
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.box p {
+    color: var(--blanco-claro);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    ul {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .mapa-container {
+        height: 550px;
+    }
+
+    .opciones {
+        top: 115px;
+        right: 15px;
+    }
+
+    .titulo-mapa {
+        top: 15px;
+        right: 15px;
+    }
+
+    .informacion-lugar {
+        display: none;
+    }
+
+    .grupo-1 {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

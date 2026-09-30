@@ -8,7 +8,7 @@
     --azul-principal: #0078D2;
     --azul-secundario: #55ACEE;
     --gris-oscuro: #292F33;
-    --gris: #000000;
+    --gris: #000000f8;
     --gris-claro: #a4a2a2;
     --gris-muy-claro: #CCD6DD;
     --fondo-claro: #EEF3FB;
@@ -295,7 +295,7 @@ main {
     overflow: hidden;
     background-color: #121212;
     color: var(--crema);
-    padding: 50px;
+    padding: 10px;
 }
 
 .pie-pagina::before,
@@ -496,12 +496,12 @@ main {
 /* Fondos simulados basados en las capturas (puedes reemplazar las URLs por tus imágenes locales) */
 .card-unreal {
     background: linear-gradient(to top, rgba(0,0,0,0.8) 10%, transparent 60%), 
-                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop') center/cover;
+                url('/img,mp3/l_1739628587.webp') center/cover;
 }
 
 .card-car {
     background: linear-gradient(to top, rgba(0,0,0,0.8) 10%, transparent 60%), 
-                url('https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=1000&auto=format&fit=crop') center/cover;
+                url('/img,mp3/Invernadero-unitario\ -\ copia.webp') center/cover;
 }
 
 .epic-card-content {
