@@ -155,13 +155,13 @@ ul {
 
 .widget-clima {
     min-width: 140px;
-    height: 40px;
+    height: 42px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #e2e8f0;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(8px);
@@ -232,7 +232,7 @@ ul {
 .kpi-header {
     display: flex;
     justify-content: space-between;
-    font-size: 11px;
+    font-size: 13px;
     color: #64748b;
     font-weight: 700;
     letter-spacing: 0.8px;
@@ -247,7 +247,7 @@ ul {
 }
 
 .kpi-footer {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -304,7 +304,7 @@ ul {
     top: 25px;
     padding: 18px;
     border-radius: 12px;
-    font-size: 13px;
+    font-size: 14px;
     width: 240px;
     transition: transform 0.2s ease;
 }
@@ -321,7 +321,7 @@ ul {
     right: 25px;
     padding: 10px 20px;
     border-radius: 10px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -337,7 +337,7 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .opciones label {
@@ -363,13 +363,13 @@ ul {
 }
 
 .controles button {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     background: rgba(19, 27, 38, 0.85);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #f8fafc;
-    font-size: 18px;
+    font-size: 22px;
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -410,14 +410,14 @@ ul {
 
 .tooltip-zona {
     position: absolute;
-    top: -30px;
+    top: -32px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(15, 23, 42, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #ffffff;
     padding: 4px 10px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
     border-radius: 6px;
     white-space: nowrap;
@@ -445,7 +445,7 @@ ul {
     border: none;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     color: #2ed573;
-    font-size: 18px;
+    font-size: 22px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -459,7 +459,7 @@ ul {
     flex: 1;
     padding: 0 24px;
     color: #64748b;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -470,6 +470,21 @@ ul {
     border-radius: 6px;
     font-weight: 700;
     box-shadow: 0 0 12px rgba(46, 213, 115, 0.3);
+}
+
+/* Reglas especificas para aumentar el tamaño global de los Emojis */
+.kpi-header i, .kpi-footer i, 
+.titulo-mapa i, .informacion-lugar i, 
+.opciones label i, .widget-clima i,
+.play i, .controles button i {
+    font-size: 1.3em;
+    vertical-align: middle;
+}
+
+/* Para emojis ingresados como texto nativo */
+.widget-clima, .titulo-mapa, .informacion-lugar, 
+.opciones label, .kpi-card, .controles button, .play {
+    font-size: 15px;
 }
 
 @media (max-width: 1024px) {
