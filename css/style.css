@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
+    font-family: 'Inter', sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -331,6 +332,11 @@ main {
     border-radius: 5px;
 }
 
+.brown-btn a{
+    text-decoration: none;
+    color: #ffffff; /* o un color que contraste bien */
+}
+
 .pie-pagina {
     position: relative;
     overflow: hidden;
@@ -599,5 +605,26 @@ main {
 .brown-btn {
     background-color: #8C6d46;
     color: white;
+}
+
+button {
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1); /* Lo hace un poco más brillante */
+}
+.tarjeta {
+  background-color: #1a1a1a; /* Un tono apenas más claro que el fondo */
+  border: 1px solid #333;
+  border-radius: 8px; /* Bordes redondeados consistentes */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.sobre-nosotros p {
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto; /* Para mantenerlo centrado */
+  color: #cccccc; /* Un gris claro cansa menos la vista que el blanco puro */
 }
 /* ------------------------------------------------ */
