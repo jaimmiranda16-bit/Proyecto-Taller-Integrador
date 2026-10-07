@@ -64,6 +64,26 @@ span {
     text-shadow: 0 0 12px rgba(85, 172, 238, 0.4);
 }
 
+i, svg, .kpi-header i, .kpi-footer i, .titulo-mapa i, .opciones i, .widget-clima i {
+    display: inline-block;
+    font-size: 1.6em !important;
+    transform: scale(1.35);
+    vertical-align: middle;
+    margin: 0 4px;
+}
+
+.widget-clima {
+    font-size: 18px !important;
+}
+
+.titulo-mapa, .informacion-lugar, .opciones label, .kpi-header, .kpi-footer {
+    font-size: 16px;
+}
+
+.controles button, .play {
+    font-size: 26px !important;
+}
+
 .encabezado {
     position: sticky;
     top: 0;
@@ -154,18 +174,17 @@ ul {
 }
 
 .widget-clima {
-    min-width: 140px;
-    height: 42px;
+    min-width: 150px;
+    height: 44px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #e2e8f0;
-    font-size: 15px;
     font-weight: 500;
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(8px);
-    padding: 0 15px;
+    padding: 0 16px;
     white-space: nowrap;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -232,7 +251,7 @@ ul {
 .kpi-header {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
+    align-items: center;
     color: #64748b;
     font-weight: 700;
     letter-spacing: 0.8px;
@@ -240,24 +259,23 @@ ul {
 }
 
 .kpi-valor {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.03em;
 }
 
 .kpi-footer {
-    font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .kpi-footer.verde { 
     color: #4ade80; 
     background: rgba(74, 222, 128, 0.1);
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: 20px;
     width: fit-content;
 }
@@ -265,7 +283,7 @@ ul {
 .kpi-footer.amarillo { 
     color: #fbbf24; 
     background: rgba(251, 191, 36, 0.1);
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: 20px;
     width: fit-content;
 }
@@ -290,7 +308,7 @@ ul {
 .informacion-lugar,
 .titulo-mapa,
 .opciones {
-    background: rgba(13, 19, 27, 0.75);
+    background: rgba(13, 19, 27, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -304,8 +322,7 @@ ul {
     top: 25px;
     padding: 18px;
     border-radius: 12px;
-    font-size: 14px;
-    width: 240px;
+    width: 250px;
     transition: transform 0.2s ease;
 }
 
@@ -319,31 +336,29 @@ ul {
     position: absolute;
     top: 25px;
     right: 25px;
-    padding: 10px 20px;
+    padding: 12px 22px;
     border-radius: 10px;
-    font-size: 15px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .opciones {
     position: absolute;
-    top: 80px;
+    top: 85px;
     right: 25px;
-    padding: 14px 20px;
+    padding: 16px 22px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 14px;
+    gap: 12px;
 }
 
 .opciones label {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
     color: #cbd5e1;
     transition: color 0.2s ease;
@@ -363,13 +378,12 @@ ul {
 }
 
 .controles button {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     background: rgba(19, 27, 38, 0.85);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #f8fafc;
-    font-size: 22px;
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -382,14 +396,14 @@ ul {
 .controles button:hover {
     background-color: var(--azul-principal);
     border-color: var(--azul-principal);
-    transform: scale(1.05);
+    transform: scale(1.08);
     box-shadow: 0 0 15px rgba(0, 120, 210, 0.5);
 }
 
 .punto-zona {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     background: #ff4757;
     border-radius: 50%;
     transform: translate(-50%, -50%);
@@ -398,10 +412,10 @@ ul {
 
 @keyframes pulso {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.8);
     }
     70% {
-        box-shadow: 0 0 0 15px rgba(255, 71, 87, 0);
+        box-shadow: 0 0 0 18px rgba(255, 71, 87, 0);
     }
     100% {
         box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
@@ -410,13 +424,13 @@ ul {
 
 .tooltip-zona {
     position: absolute;
-    top: -32px;
+    top: -34px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #ffffff;
-    padding: 4px 10px;
+    padding: 4px 12px;
     font-size: 13px;
     font-weight: 500;
     border-radius: 6px;
@@ -445,7 +459,6 @@ ul {
     border: none;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     color: #2ed573;
-    font-size: 22px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -470,21 +483,6 @@ ul {
     border-radius: 6px;
     font-weight: 700;
     box-shadow: 0 0 12px rgba(46, 213, 115, 0.3);
-}
-
-/* Reglas especificas para aumentar el tamaño global de los Emojis */
-.kpi-header i, .kpi-footer i, 
-.titulo-mapa i, .informacion-lugar i, 
-.opciones label i, .widget-clima i,
-.play i, .controles button i {
-    font-size: 1.3em;
-    vertical-align: middle;
-}
-
-/* Para emojis ingresados como texto nativo */
-.widget-clima, .titulo-mapa, .informacion-lugar, 
-.opciones label, .kpi-card, .controles button, .play {
-    font-size: 15px;
 }
 
 @media (max-width: 1024px) {
