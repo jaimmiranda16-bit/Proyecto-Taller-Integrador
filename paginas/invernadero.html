@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invernadero Smart - Monitoreo IoT Agrotech</title>
-    <link rel="stylesheet" href="/Proyecto-Taller-Integrador/css/invernadero.css">
-    <link rel="icon" href="/Proyecto-Taller-Integrador/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
+    <link rel="stylesheet" href="/css/invernadero.css">
+    <link rel="icon" href="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="encabezado">
         <div class="head">
             <nav class="navbar">
-                <a href="#" class="logo">
-                    <img src="/Proyecto-Taller-Integrador/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
+                <a href="/index.html" class="logo">
+                    <img src="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
                     <span class="logo-sub">Clima & Viento</span>
                 </a>
                 
                 <ul>
-                    <li><a href="/Proyecto-Taller-Integrador/index.html" class="enlaces">Inicio</a></li>
-                    <li><a href="/Proyecto-Taller-Integrador/paginas/tiempo.html" class="enlaces">Tiempo</a></li>
-                    <li><a href="/Proyecto-Taller-Integrador/paginas/invernadero.html"  class="enlaces activo">Invernadero</a></li>
-                    <li><a href="/Proyecto-Taller-Integrador/paginas/algomas.html" class="enlaces">Sobre nosotros</a></li>
+                    <li><a href="/index.html" class="enlaces">Inicio</a></li>
+                    <li><a href="/paginas/tiempo.html" class="enlaces">Tiempo</a></li>
+                    <li><a href="/paginas/invernadero.html"  class="enlaces activo">Invernadero</a></li>
+                    <li><a href="/paginas/nosotros.html" class="enlaces">Nosotros</a></li>
                 </ul>
 
                 <div class="widget-clima">
@@ -71,62 +72,23 @@
             </div>
         </section>
 
-        <!-- Contenedor del Mapa / Canvas Interactivo -->
-        <div class="mapa-container">
-            <canvas id="canvas"></canvas>
-
-            <!-- Cuadro flotante de información de la zona seleccionada -->
-            <div class="informacion-lugar" id="informacionLugar">
-                <strong style="color: #00ffcc;">Zona Norte (Plantines)</strong>
-                <p>Sensor ID: #TH-01</p>
-                <p>Temp. Zona: <span id="map-temp">29.1</span>°C</p>
-                <p>Humedad: 62%</p>
+        <!-- Gráficos de Tendencias -->
+        <section class="graficos-container">
+            <div class="grafico-card">
+                <h3>Tendencia de Temperatura</h3>
+                <canvas id="grafico-temperatura"></canvas>
             </div>
 
-            <!-- Título flotante derecho superior -->
-            <div class="titulo-mapa">
-                <span class="icono-viento">〰</span>
-                <strong>Distribución Térmica y Flujo de Aire</strong>
+            <div class="grafico-card">
+                <h3>Tendencia de Humedad Relativa</h3>
+                <canvas id="grafico-humedad"></canvas>
             </div>
 
-            <!-- Opciones de visualización (Checkboxes) -->
-            <div class="opciones">
-                <label>
-                    <input type="checkbox" id="checkParticulas" checked>
-                    <span>Flujo de Viento (Partículas)</span>
-                </label>
-                <label>
-                    <input type="checkbox" id="checkCalor" checked>
-                    <span>Mapa de Calor por Zonas</span>
-                </label>
+            <div class="grafico-card">
+                <h3>Tendencia de Humedad del Suelo</h3>
+                <canvas id="grafico-suelo"></canvas>
             </div>
-
-            <!-- Botones de Control Lateral (Zoom / Centrar) -->
-            <div class="controles">
-                <button id="zoomMas">+</button>
-                <button id="zoomMenos">−</button>
-                <button id="centrar">⌂</button>
-            </div>
-
-            <!-- Indicadores de Zonas fijas sobre el mapa -->
-            <div class="punto-zona zona-1" style="left: 35%; top: 60%;">
-                <span class="tooltip-zona">Zona (27.5°C)</span>
-            </div>
-            <div class="punto-zona zona-2" style="left: 60%; top: 70%;">
-                <span class="tooltip-zona">Zona (31.8°C)</span>
-            </div>
-
-            <!-- Timeline inferior de horas -->
-            <div class="timeline">
-                <button id="play" class="play">▶️</button>
-                <div class="horas">
-                    <div style="display: flex; justify-content: space-around; width: 100%;">
-                        <span>08:00</span><span>10:00</span><span>12:00</span><span>14:00</span>
-                        <span class="hora-activa">16:00</span><span>18:00</span><span>20:00</span><span>22:00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -134,8 +96,8 @@
             <div class="grupo-1">
                 <div class="box">
                     <figure>
-                        <a href="#">
-                            <img src="/Proyecto-Taller-Integrador/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
+                        <a href="/index.html">
+                            <img src="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
                         </a>
                     </figure>
                 </div>
@@ -153,8 +115,6 @@
         </div>
     </footer>
 
-    <!-- Scripts separados -->
-    <script src="/Proyecto-Taller-Integrador/scripts/api.js"></script>
-    <script src="/Proyecto-Taller-Integrador/scripts/inver.js"></script>
+    <script src="/scripts/inver.js"></script>
 </body>
 </html>
