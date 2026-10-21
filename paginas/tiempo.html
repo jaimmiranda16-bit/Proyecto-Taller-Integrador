@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiempo y Mapa Meteorológico - Clima & Viento</title>
+    <title>Envirox</title>
     
     <!-- CSS de Leaflet (Librería del Mapa Real) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -25,7 +25,7 @@
                     <li><a href="/index.html" class="enlaces">Inicio</a></li>
                     <li><a href="/paginas/tiempo.html" class="enlaces activo">Tiempo</a></li>
                     <li><a href="/paginas/invernadero.html" class="enlaces">Invernadero</a></li>
-                    <li><a href="/paginas/algomas.html" class="enlaces">Nosotros</a></li>
+                    <li><a href="/paginas/nosotros.html" class="enlaces">Nosotros</a></li>
                 </ul>
 
                 <div class="widget-clima">
@@ -68,30 +68,6 @@
                 <strong style="color: var(--azul-secundario);">Mapa Meteorológico</strong>
                 <p>Arrastrá el mapa para desplazarte</p>
                 <p>Usá la rueda para hacer zoom</p>
-            </div>
-
-            <!-- BARRA DE TIEMPO / TIMELINE -->
-            <div class="timeline" style="position: absolute; bottom: 0; left: 0; width: 100%; z-index: 3;">
-                <button id="play" class="play">▶</button>
-                <div class="horas" style="display: flex; align-items: center; overflow-x: auto; gap: 15px; white-space: nowrap;">
-                    <span>16:00</span>
-                    <span>17:00</span>
-                    <span>18:00</span>
-                    <span>19:00</span>
-                    <span>20:00</span>
-                    <span>21:00</span>
-                    <span>22:00</span>
-                    <span>23:00</span>
-                    <span>00:00</span>
-                    <span>01:00</span>
-                    <span id="horaActual" class="hora-activa">02:00</span>
-                    <span>03:00</span>
-                    <span>04:00</span>
-                    <span>05:00</span>
-                    <span>06:00</span>
-                    <span>07:00</span>
-                    <span>08:00</span>
-                </div>
             </div>
         </div>
     </main>
