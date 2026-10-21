@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invernadero Smart - Monitoreo IoT Agrotech</title>
-    <link rel="stylesheet" href="/css/tiempo.css">
-    <link rel="icon" href="/img/logo.png">
+    <title>Viento con Canvas / Leaflet</title>
+    
+    <!-- CSS de Leaflet (Libreria del Mapa Real) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/Proyecto-Taller-Integrador/css/tiempo.css">
+    <link rel="icon" href="/FOTOS/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
 </head>
 <body>
 
@@ -14,15 +16,17 @@
         <div class="head">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <img src="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
+                    <img src="/Proyecto-Taller-Integrador/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
                     <span class="logo-sub">Clima & Viento</span>
                 </a>
                 
                 <ul>
-                    <li><a href="//index.html" class="enlaces">Inicio</a></li>
-                    <li><a href="/paginas/tiempo.html"  class="enlaces activo">Tiempo</a></li>
-                    <li><a href="/paginas/invernadero.html" class="enlaces">Invernadero</a></li>
-                    <li><a href="/paginas/algomas.html" class="enlaces">Sobre nosotros</a></li>
+
+                    <li><a href="/Proyecto-Taller-Integrador/index.html" class="enlaces">Inicio</a></li>
+                    <li><a href="/Proyecto-Taller-Integrador/paginas/tiempo.html" id="inicio" class="enlaces activo">Tiempo</a></li>
+                    <li><a href="/Proyecto-Taller-Integrador/paginas/invernadero.html" class="enlaces">Invernadero</a></li>
+                    <li><a href="/Proyecto-Taller-Integrador/paginas/nosotros.html" class="enlaces">Sobre nosotros</a></li>
+
                 </ul>
 
                 <div class="widget-clima">
@@ -32,99 +36,60 @@
         </div>
     </header>
 
-    <main class="dashboard-main">
-        
-        <!-- Fila Superior de Tarjetas de Sensores (KPIs) -->
-        <section class="kpi-container">
-            <div class="kpi-card">
-                <div class="kpi-header">
-                    <span>TEMP. AMBIENTE</span>
-                    <span class="kpi-icon">🌡️</span>
-                </div>
-                <div class="kpi-valor"><span id="val-temp">29.1</span>°C</div>
-                <div class="kpi-footer verde">✔ Rango Óptimo (18 - 26°C)</div>
-            </div>
+    <main>
+        <div class="mapa-container" style="position: relative;">
+            
+            <!-- CAPA 1: Mapa Real Interactivo (Leaflet) -->
+            <div id="map" style="width: 100%; height: 600px; position: absolute; top:0; left:0; z-index: 1;"></div>
 
-            <div class="kpi-card">
-                <div class="kpi-header">
-                    <span>HUMEDAD RELATIVA</span>
-                    <span class="kpi-icon">💧</span>
-                </div>
-                <div class="kpi-valor"><span id="val-hum">58</span>%</div>
-                <div class="kpi-footer verde">✔ Humedad Normal</div>
-            </div>
+            <!-- CAPA 2: Canvas superpuesto transparente para animacion -->
+            <canvas id="canvas" style="width: 100%; height: 600px; position: relative; z-index: 2; pointer-events: none;"></canvas>
 
-            <div class="kpi-card">
-                <div class="kpi-header">
-                    <span>HUMEDAD DEL SUELO</span>
-                    <span class="kpi-icon">🌱</span>
-                </div>
-                <div class="kpi-valor"><span id="val-suelo">42</span>%</div>
-                <div class="kpi-footer amarillo">⚠ Ligera resequedad</div>
-            </div>
-
-            <div class="kpi-card">
-                <div class="kpi-header">
-                    <span>RADIACIÓN SOLAR</span>
-                    <span class="kpi-icon">⚙️</span>
-                </div>
-                <div class="kpi-valor">780 W/m²</div>
-                <div class="kpi-footer verde">✔ Malla Sombra 20%</div>
-            </div>
-        </section>
-
-        <div class="mapa-container">
-            <canvas id="canvas"></canvas>
-
-            <!-- Cuadro flotante de información de la zona seleccionada -->
-            <div class="informacion-lugar" id="informacionLugar">
-                <strong style="color: #00ffcc;">Zona Norte (Plantines)</strong>
-                <p>Sensor ID: #TH-01</p>
-                <p>Temp. Zona: <span id="map-temp">29.1</span>°C</p>
-                <p>Humedad: 62%</p>
-            </div>
-
-            <!-- Título flotante derecho superior -->
-            <div class="titulo-mapa">
+            <div class="titulo-mapa" style="position: absolute; z-index: 3;">
                 <span class="icono-viento">〰</span>
-                <strong>Distribución Térmica y Flujo de Aire</strong>
+                <strong>Viento y condiciones meteorológicas</strong>
             </div>
 
-            <!-- Opciones de visualización (Checkboxes) -->
-            <div class="opciones">
+            <div class="opciones" style="position: absolute; z-index: 3;">
                 <label>
-                    <input type="checkbox" id="checkParticulas" checked>
-                    <span>Flujo de Viento (Partículas)</span>
+                    <input type="checkbox" id="particulas" checked>
+                    <span>Animación de partículas</span>
                 </label>
+
                 <label>
-                    <input type="checkbox" id="checkCalor" checked>
-                    <span>Mapa de Calor por Zonas</span>
+                    <input type="checkbox" id="lluvia" checked>
+                    <span>Precipitación</span>
                 </label>
             </div>
 
-            <!-- Botones de Control Lateral (Zoom / Centrar) -->
-            <div class="controles">
-                <button id="zoomMas">+</button>
-                <button id="zoomMenos">−</button>
-                <button id="centrar">⌂</button>
+            <div class="informacion-lugar" id="informacionLugar" style="position: absolute; z-index: 3;">
+                <strong>Mapa meteorológico</strong>
+                <p>Arrastrá el mapa para desplazarte</p>
+                <p>Usá la rueda para hacer zoom</p>
             </div>
 
-            <!-- Indicadores de Zonas fijas sobre el mapa -->
-            <div class="punto-zona zona-1" style="left: 35%; top: 60%;">
-                <span class="tooltip-zona">Zona (27.5°C)</span>
-            </div>
-            <div class="punto-zona zona-2" style="left: 60%; top: 70%;">
-                <span class="tooltip-zona">Zona (31.8°C)</span>
-            </div>
-
-            <!-- Timeline inferior de horas -->
-            <div class="timeline">
+            <!-- BARRA DE TIEMPO COMPLETA -->
+            <div class="timeline" style="position: absolute; z-index: 3;">
                 <button id="play" class="play">▶</button>
+
                 <div class="horas">
-                    <div style="display: flex; justify-content: space-around; width: 100%;">
-                        <span>08:00</span><span>10:00</span><span>12:00</span><span>14:00</span>
-                        <span class="hora-activa">16:00</span><span>18:00</span><span>20:00</span><span>22:00</span>
-                    </div>
+                    <span>16:00</span>
+                    <span>17:00</span>
+                    <span>18:00</span>
+                    <span>19:00</span>
+                    <span>20:00</span>
+                    <span>21:00</span>
+                    <span>22:00</span>
+                    <span>23:00</span>
+                    <span>00:00</span>
+                    <span>01:00</span>
+                    <span id="horaActual" class="hora-activa">02:00</span>
+                    <span>03:00</span>
+                    <span>04:00</span>
+                    <span>05:00</span>
+                    <span>06:00</span>
+                    <span>07:00</span>
+                    <span>08:00</span>
                 </div>
             </div>
         </div>
@@ -136,7 +101,7 @@
                 <div class="box">
                     <figure>
                         <a href="#">
-                            <img src="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
+                            <img src="/FOTOS/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
                         </a>
                     </figure>
                 </div>
@@ -147,25 +112,18 @@
                 <div class="box">
                     <h2>INTEGRANTES</h2>
                     <p><span>Diseño de la página:</span> Nehemias Almendra y Patricio Garcia</p>
-                    <p><span>Frontend:</span> Valentino Valenzuela Pino y Jaime Miranda</p>
+                    <p><span>Frontend:</span> Valentino Valenzuela y Jaime Miranda</p>
                     <p><span>Líder del equipo:</span> Martin Bautista</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts separados -->
-    <script src="/js/api.js"></script>
-    <script src="/js/script.js"></script>
-=======
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- JS de Leaflet y script propio -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/Proyecto-Taller-Integrador/scripts/tiempo.js"></script>
+</body>
+</html>
     
->>>>>>> bb6bdc423475b46af53af9a34b0bc936fe545279
 </body>
 </html>
