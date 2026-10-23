@@ -85,6 +85,110 @@ function agregarDatoGrafico(chart, etiqueta, valor) {
 function actualizarUI(temperatura, humedadAmbiente, humedadSuelo) {
     const horaActual = new Date().toLocaleTimeString();
 
+// Evaluar y actualizar el estado de alerta personalizado de la planta
+function evaluarEstadoPlanta(tempActual) {
+    const nombre = document.getElementById('nombre-planta').value || "Planta";
+    const tempOptima = parseFloat(document.getElementById('temp-optima').value) || 22;
+    const tolAtencion = parseFloat(document.getElementById('tolerancia-alerta').value) || 3;
+    const tolCritica = parseFloat(document.getElementById('tolerancia-critica').value) || 6;
+
+    const displayNombre = document.getElementById('display-nombre-planta');
+    const badgeEstado = document.getElementById('badge-estado');
+    const mensajeEstado = document.getElementById('mensaje-estado');
+    const tarjeta = document.getElementById('tarjeta-estado-planta');
+    const elTempActual = document.getElementById('planta-temp-actual');
+    const elRangoOptimo = document.getElementById('planta-rango-optimo');
+
+    displayNombre.innerText = nombre;
+    elTempActual.innerText = `${tempActual.toFixed(1)} °C`;
+    elRangoOptimo.innerText = `${(tempOptima - tolAtencion).toFixed(1)} - ${(tempOptima + tolAtencion).toFixed(1)} °C`;
+
+    const diferencia = Math.abs(tempActual - tempOptima);
+
+    if (diferencia >= tolCritica) {
+        // Estado CRÍTICO
+        badgeEstado.className = "badge badge-critico";
+        badgeEstado.innerText = "CRÍTICO";
+        tarjeta.style.borderLeftColor = "#f87171";
+        mensajeEstado.innerHTML = `⚠️ <strong>¡Atención crítica!</strong> La temperatura está ${tempActual > tempOptima ? 'demasiado alta' : 'demasiado baja'} para la planta.`;
+    } else if (diferencia >= tolAtencion) {
+        // Estado NECESITA ATENCIÓN
+        badgeEstado.className = "badge badge-atencion";
+        badgeEstado.innerText = "NECESITA ATENCIÓN";
+        tarjeta.style.borderLeftColor = "#fbbf24";
+        mensajeEstado.innerHTML = `⚡ <strong>Advertencia:</strong> La temperatura se está alejando del rango ideal.`;
+    } else {
+        // Estado NORMAL
+        badgeEstado.className = "badge badge-normal";
+        badgeEstado.innerText = "NORMAL";
+        tarjeta.style.borderLeftColor = "#4ade80";
+        mensajeEstado.innerText = `✔️ El ambiente se encuentra dentro de las condiciones ideales para el desarrollo de la planta.`;
+    }
+}
+
+// Actualizar valores en KPIs, Alerta de Planta y Gráficos
+function actualizarUI(temperatura, humedadAmbiente, humedadSuelo) {
+    const horaActual = new Date().toLocaleTimeString();
+
+    // Evaluar la alerta de la planta en tiempo real
+    evaluarEstadoPlanta(temperatura);
+
+    // KPI Temperatura
+    const elTemp = document.getElementById('val-temp');
+    if (elTemp) elTemp.innerText = temperatura.toFixed(1);
+    
+    const footerTemp = document.querySelector('.kpi-card:nth-child(1) .kpi-footer');
+    if (footerTemp) {
+        if (temperatura >= 18 && temperatura <= 26) {
+            footerTemp.className = "kpi-footer verde";
+            footerTemp.innerHTML = "✔️ Rango Óptimo (18 - 26°C)";
+        } else {
+            footerTemp.className = "kpi-footer amarillo";
+            footerTemp.innerHTML = "⚠️ Fuera de rango óptimo";
+        }
+    }
+    agregarDatoGrafico(chartTemp, horaActual, temperatura);
+
+    // KPI Humedad Ambiente
+    const elHum = document.getElementById('val-hum');
+    if (elHum) elHum.innerText = Math.round(humedadAmbiente);
+    agregarDatoGrafico(chartHum, horaActual, humedadAmbiente);
+
+    // KPI Humedad del Suelo
+    const elSuelo = document.getElementById('val-suelo');
+    if (elSuelo) elSuelo.innerText = Math.round(humedadSuelo);
+    
+    const footerSuelo = document.querySelector('.kpi-card:nth-child(3) .kpi-footer');
+    if (footerSuelo) {
+        if (humedadSuelo < 50) {
+            footerSuelo.className = "kpi-footer amarillo";
+            footerSuelo.innerHTML = "⚠️ Ligera resequedad - Riego sugerido";
+        } else {
+            footerSuelo.className = "kpi-footer verde";
+            footerSuelo.innerHTML = "✔️ Humedad de suelo adecuada";
+        }
+    }
+    agregarDatoGrafico(chartSuelo, horaActual, humedadSuelo);
+}
+
+// Listener para actualizar en tiempo real si el usuario cambia los campos del formulario
+window.addEventListener('load', () => {
+    inicializarGraficos();
+    consultarDatosInvernadero();
+    setInterval(consultarDatosInvernadero, 2000);
+
+    const inputsConfig = ['nombre-planta', 'temp-optima', 'tolerancia-alerta', 'tolerancia-critica'];
+    inputsConfig.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', () => {
+                const tempActual = parseFloat(document.getElementById('val-temp').innerText) || 22;
+                evaluarEstadoPlanta(tempActual);
+            });
+        }
+    });
+});
+
     // KPI Temperatura
     const elTemp = document.getElementById('val-temp');
     if (elTemp) elTemp.innerText = temperatura.toFixed(1);

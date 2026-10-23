@@ -457,3 +457,129 @@ ul {
         text-align: center;
     }
 }
+
+/* Panel de Monitoreo Personalizado de Planta */
+.planta-custom-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.planta-card-config, .planta-card-estado {
+    background: linear-gradient(145deg, #0d131a, #131b26);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.planta-card-config h3 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.planta-card-config p {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--azul-secundario);
+    box-shadow: 0 0 8px rgba(85, 172, 238, 0.3);
+}
+
+.planta-card-estado {
+    text-align: center;
+    position: relative;
+    border-left: 5px solid #4ade80;
+    transition: all 0.3s ease;
+}
+
+.estado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.badge-normal { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+.badge-atencion { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+.badge-critico { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+
+.estado-icono {
+    font-size: 48px;
+    margin: 12px 0;
+}
+
+.estado-mensaje {
+    font-size: 14px;
+    color: #cbd5e1;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.estado-detalles {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.estado-detalles strong {
+    color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .planta-custom-container {
+        grid-template-columns: 1fr;
+    }
+}

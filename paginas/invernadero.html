@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envirox</title>
-    <link rel="stylesheet" href="/css/invernadero.css">
+    <link rel="stylesheet" href="/Proyecto-Taller-Integrador/css/invernadero.css">
     <link rel="icon" href="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -89,6 +89,54 @@
                 <canvas id="grafico-suelo"></canvas>
             </div>
         </section>
+
+        <section class="planta-custom-container">
+    <div class="planta-card-config">
+        <h3>🌱 Monitoreo Personalizado de Planta</h3>
+        <p>Configura los parámetros de temperatura para evaluar el estado actual del cultivo.</p>
+        
+        <div class="form-grid">
+            <div class="input-group">
+                <label for="nombre-planta">Nombre de la planta / cultivo:</label>
+                <input type="text" id="nombre-planta" placeholder="Ej: Lechuga Roble" value="Lechuga">
+            </div>
+
+            <div class="input-group">
+                <label for="temp-optima">Temp. Óptima (°C):</label>
+                <input type="number" id="temp-optima" value="22" step="0.5">
+            </div>
+
+            <div class="input-group">
+                <label for="tolerancia-alerta">Tolerancia de Atención (±°C):</label>
+                <input type="number" id="tolerancia-alerta" value="3" step="0.5">
+            </div>
+
+            <div class="input-group">
+                <label for="tolerancia-critica">Tolerancia Crítica (±°C):</label>
+                <input type="number" id="tolerancia-critica" value="6" step="0.5">
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerta y Estado Actual de la Planta -->
+    <div class="planta-card-estado" id="tarjeta-estado-planta">
+        <div class="estado-header">
+            <span id="display-nombre-planta">Lechuga</span>
+            <span id="badge-estado" class="badge badge-normal">NORMAL</span>
+        </div>
+        
+        <div class="estado-icono" id="icono-estado">🥬</div>
+        
+        <div class="estado-mensaje" id="mensaje-estado">
+            El ambiente actual se encuentra dentro de los parámetros seguros para la planta.
+        </div>
+
+        <div class="estado-detalles">
+            <span>Temp. Actual: <strong id="planta-temp-actual">-- °C</strong></span>
+            <span>Rango Óptimo: <strong id="planta-rango-optimo">-- °C</strong></span>
+        </div>
+    </div>
+</section>
     </main>
 
     <footer>
@@ -115,6 +163,6 @@
         </div>
     </footer>
 
-    <script src="/scripts/inver.js"></script>
+    <script src="/Proyecto-Taller-Integrador/scripts/inver.js"></script>
 </body>
 </html>
