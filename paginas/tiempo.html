@@ -3,21 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Viento con Canvas / Leaflet</title>
-    
-    <!-- CSS de Leaflet (Libreria del Mapa Real) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="/Proyecto-Taller-Integrador/css/tiempo.css">
-    <link rel="icon" href="/FOTOS/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
-=======
-    <title>Envirox</title>
-    
-    <!-- CSS de Leaflet (Librería del Mapa Real) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="/css/tiempo.css">
     <link rel="icon" href="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
+    <title>Envirox</title>
 </head>
 <body>
 
@@ -25,30 +15,18 @@
     <header class="encabezado">
         <div class="head">
             <nav class="navbar">
-<<<<<<< HEAD
-                <a href="#" class="logo">
-                    <img src="/Proyecto-Taller-Integrador/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
-=======
                 <a href="/index.html" class="logo">
                     <img src="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="foto del logo">
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
                     <span class="logo-sub">Clima & Viento</span>
                 </a>
                 
                 <ul>
-<<<<<<< HEAD
 
-                    <li><a href="/Proyecto-Taller-Integrador/index.html" class="enlaces">Inicio</a></li>
-                    <li><a href="/Proyecto-Taller-Integrador/paginas/tiempo.html" id="inicio" class="enlaces activo">Tiempo</a></li>
-                    <li><a href="/Proyecto-Taller-Integrador/paginas/invernadero.html" class="enlaces">Invernadero</a></li>
-                    <li><a href="/Proyecto-Taller-Integrador/paginas/nosotros.html" class="enlaces">Sobre nosotros</a></li>
-
-=======
                     <li><a href="/index.html" class="enlaces">Inicio</a></li>
                     <li><a href="/paginas/tiempo.html" class="enlaces activo">Tiempo</a></li>
                     <li><a href="/paginas/invernadero.html" class="enlaces">Invernadero</a></li>
                     <li><a href="/paginas/nosotros.html" class="enlaces">Nosotros</a></li>
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
+
                 </ul>
 
                 <div class="widget-clima">
@@ -58,7 +36,6 @@
         </div>
     </header>
 
-<<<<<<< HEAD
     <main>
         <div class="mapa-container" style="position: relative;">
             
@@ -72,76 +49,12 @@
                 <span class="icono-viento">〰</span>
                 <strong>Viento y condiciones meteorológicas</strong>
             </div>
-
-            <div class="opciones" style="position: absolute; z-index: 3;">
-=======
     <!-- CONTENIDO PRINCIPAL CON EL MAPA REAL -->
-    <main class="dashboard-main">
-        <div class="mapa-container" style="position: relative; width: 100%; height: 600px;">
-            
-            <!-- CAPA 1: Mapa Real Interactivo (Leaflet) -->
-            <div id="map" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; border-radius: 16px;"></div>
-
-            <!-- CAPA 2: Canvas superpuesto transparente para animaciones de viento y lluvia -->
-            <canvas id="canvas" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none; border-radius: 16px;"></canvas>
-
-            <!-- TÍTULO FLOTANTE -->
-            <div class="titulo-mapa" style="position: absolute; top: 25px; right: 25px; z-index: 3;">
-                <span class="icono-viento">〰</span>
-                <strong>Viento y Condiciones Meteorológicas</strong>
-            </div>
-
-            <!-- OPCIONES DE VISUALIZACIÓN -->
-            <div class="opciones" style="position: absolute; top: 85px; right: 25px; z-index: 3;">
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
-                <label>
-                    <input type="checkbox" id="particulas" checked>
-                    <span>Animación de partículas</span>
-                </label>
-
-                <label>
-                    <input type="checkbox" id="lluvia" checked>
-                    <span>Precipitación</span>
-                </label>
-            </div>
-
-<<<<<<< HEAD
-            <div class="informacion-lugar" id="informacionLugar" style="position: absolute; z-index: 3;">
-                <strong>Mapa meteorológico</strong>
-                <p>Arrastrá el mapa para desplazarte</p>
-                <p>Usá la rueda para hacer zoom</p>
-            </div>
-
-            <!-- BARRA DE TIEMPO COMPLETA -->
-            <div class="timeline" style="position: absolute; z-index: 3;">
-                <button id="play" class="play">▶</button>
-
-                <div class="horas">
-                    <span>16:00</span>
-                    <span>17:00</span>
-                    <span>18:00</span>
-                    <span>19:00</span>
-                    <span>20:00</span>
-                    <span>21:00</span>
-                    <span>22:00</span>
-                    <span>23:00</span>
-                    <span>00:00</span>
-                    <span>01:00</span>
-                    <span id="horaActual" class="hora-activa">02:00</span>
-                    <span>03:00</span>
-                    <span>04:00</span>
-                    <span>05:00</span>
-                    <span>06:00</span>
-                    <span>07:00</span>
-                    <span>08:00</span>
-                </div>
-=======
             <!-- CUADRO DE INFORMACIÓN -->
             <div class="informacion-lugar" id="informacionLugar" style="position: absolute; top: 25px; left: 25px; z-index: 3;">
                 <strong style="color: var(--azul-secundario);">Mapa Meteorológico</strong>
                 <p>Arrastrá el mapa para desplazarte</p>
                 <p>Usá la rueda para hacer zoom</p>
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
             </div>
         </div>
     </main>
@@ -152,13 +65,8 @@
             <div class="grupo-1">
                 <div class="box">
                     <figure>
-<<<<<<< HEAD
-                        <a href="#">
-                            <img src="/FOTOS/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
-=======
                         <a href="/index.html">
                             <img src="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png" alt="logo">
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
                         </a>
                     </figure>
                 </div>
@@ -169,24 +77,21 @@
                 <div class="box">
                     <h2>INTEGRANTES</h2>
                     <p><span>Diseño de la página:</span> Nehemias Almendra y Patricio Garcia</p>
-                    <p><span>Frontend:</span> Valentino Valenzuela y Jaime Miranda</p>
+                    <p><span>Frontend:</span> Valentino Valenzuela y Jaim Miranda</p>
                     <p><span>Líder del equipo:</span> Martin Bautista</p>
                 </div>
             </div>
         </div>
     </footer>
 
-<<<<<<< HEAD
     <!-- JS de Leaflet y script propio -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/Proyecto-Taller-Integrador/scripts/tiempo.js"></script>
 </body>
 </html>
     
-=======
     <!-- Scripts: Leaflet y luego tu script.js -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/scripts/script.js"></script>
->>>>>>> 39f31e194ea1f6f941cf5065d57f47439205bc23
 </body>
 </html>
