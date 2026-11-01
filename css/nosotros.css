@@ -729,7 +729,7 @@ main {
         text-align: center;
     }
 }
-/* ================= ESTILOS GENERALES PARA CONTENEDORES DE IMÁGENES ================= */
+/*ESTILOS GENERALES PARA CONTENEDORES DE IMÁGENES */
 
 /* Contenedores de las secciones de historia */
 .history-image-placeholder {
@@ -769,7 +769,7 @@ main {
 }
 
 
-/* ================= CÍRCULOS DE LOS INTEGRANTES (EQUIPO) ================= */
+/* CÍRCULOS DE LOS INTEGRANTES (EQUIPO) */
 .team-photo {
     width: 150px;
     height: 150px;
