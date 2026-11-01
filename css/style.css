@@ -563,12 +563,12 @@ main {
 
 .card-unreal {
     background: linear-gradient(to top, rgba(0,0,0,0.8) 10%, transparent 60%), 
-                url('/img,mp3/l_1739628587.webp') center/cover;
+                url('../img,mp3/deteccion de temperatura mapa.webp') center/cover;
 }
 
 .card-car {
     background: linear-gradient(to top, rgba(0,0,0,0.8) 10%, transparent 60%), 
-                url('/img,mp3/Invernadero-unitario\ -\ copia.webp') center/cover;
+                url('../img,mp3/Invernadero-unitario\ -\ copia.webp') center/cover;
 }
 
 .epic-card-content {

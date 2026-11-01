@@ -729,3 +729,80 @@ main {
         text-align: center;
     }
 }
+/* ================= ESTILOS GENERALES PARA CONTENEDORES DE IMÁGENES ================= */
+
+/* Contenedores de las secciones de historia */
+.history-image-placeholder {
+    width: 100%;
+    max-width: 450px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121824;
+}
+
+.history-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Contenedor de la foto grupal destacada */
+.group-image-box {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 20px auto 0 auto;
+}
+
+.group-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* ================= CÍRCULOS DE LOS INTEGRANTES (EQUIPO) ================= */
+.team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Imagen base de los integrantes (con zoom suave al pasar el mouse) */
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-photo:hover img {
+    transform: scale(1.15);
+}
+
+
+/* ================= AJUSTE EXCLUSIVO PARA ULISES MARTÍNEZ ================= */
+.team-photo img.foto-ulises {
+    object-position: center center !important;
+    transform: scale(4.5) translateY(20px) !important;
+    transition: transform 0.3s ease-in-out !important;
+}
+
+.team-photo:hover img.foto-ulises {
+    transform: scale(4.8) translateY(20px) !important;
+}
