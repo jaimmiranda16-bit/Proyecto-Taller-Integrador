@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envirox</title>
-    <link rel="stylesheet" href="/css/invernadero.css">
+    <link rel="stylesheet" href="../css/invernadero.css">
     <link rel="icon" href="/img,mp3/ChatGPT_Image_26_ago_2026,_07_07_29_p.m..png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -31,10 +31,26 @@
         </div>
     </header>
 
-    <main class="dashboard-main">
-        
-        <!-- Fila Superior de Tarjetas de Sensores (KPIs) -->
-        <section class="kpi-container">
+  <main class="dashboard-main">
+
+    <!-- Barra de alertas y recomendaciones -->
+    <section class="alertas-container" id="barra-alertas">
+        <div class="alertas-icono" id="alertas-icono">🔔</div>
+
+        <div class="alertas-contenido">
+            <h3 id="alertas-titulo">Alertas y recomendaciones</h3>
+            <p id="alertas-mensaje">
+                Analizando las condiciones actuales del ambiente...
+            </p>
+        </div>
+
+        <span class="alertas-estado" id="alertas-estado">
+            ANALIZANDO
+        </span>
+    </section>
+
+    <!-- Fila Superior de Tarjetas de Sensores (KPIs) -->
+    <section class="kpi-container">
             <div class="kpi-card">
                 <div class="kpi-header">
                     <span>TEMP. AMBIENTE</span>

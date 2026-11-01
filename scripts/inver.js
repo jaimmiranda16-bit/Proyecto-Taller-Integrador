@@ -81,7 +81,79 @@ function agregarDatoGrafico(chart, etiqueta, valor) {
     chart.update();
 }
 
-// Evaluar y actualizar el estado de alerta personalizado de la planta
+// --- FRASES AUTOMÁTICAS Y TÉCNICAS PARA LAS PLANTAS DIVIDIDAS EN 3 PARTES ---
+
+function obtenerTextoTemperaturaPlanta(val) {
+    if (val < 18) {
+        return { texto: "la temperatura está baja y frena el crecimiento del cultivo", nivel: "advertencia" };
+    } else if (val <= 26) {
+        return { texto: "la temperatura está excelente para que las plantas anden joya", nivel: "ok" };
+    } else {
+        return { texto: "la temperatura está muy alta y estresa a la vegetación", nivel: "peligro" };
+    }
+}
+
+function obtenerTextoHumedadPlanta(val) {
+    if (val < 40) {
+        return { texto: "a la humedad le falta muchísimo y las hojas se van a deshidratar", nivel: "advertencia" };
+    } else if (val <= 70) {
+        return { texto: "la humedad relativa acompaña perfecto el desarrollo radicular", nivel: "ok" };
+    } else {
+        return { texto: "hay exceso de humedad ambiental con riesgo de hongos en el follaje", nivel: "advertencia" };
+    }
+}
+
+function obtenerTextoLuminosidadPlanta(val) {
+    if (val < 40) {
+        return { texto: "y se nota que falta iluminación para una buena fotosíntesis.", nivel: "advertencia" };
+    } else if (val <= 80) {
+        return { texto: "y la luminosidad está ideal para este tipo de plantas.", nivel: "ok" };
+    } else {
+        return { texto: "y el nivel de luz solar pega tan fuerte que puede quemar las hojas.", nivel: "advertencia" };
+    }
+}
+
+function actualizarBarraAlertasAutomatica(temp, hum, luz) {
+    const barraAlertas = document.getElementById("barra-alertas");
+    const alertasIcono = document.getElementById("alertas-icono");
+    const alertasTitulo = document.getElementById("alertas-titulo");
+    const alertasMensaje = document.getElementById("alertas-mensaje");
+    const alertasEstado = document.getElementById("alertas-estado");
+
+    if (!barraAlertas) return;
+
+    const pTemp = obtenerTextoTemperaturaPlanta(temp);
+    const pHum = obtenerTextoHumedadPlanta(hum);
+    const pLuz = obtenerTextoLuminosidadPlanta(luz);
+
+    // Unir las 3 partes de forma automática y fluida
+    let mensajeCompleto = `Estado actual: Se detecta que ${pTemp.texto}, acompañando con que ${pHum.texto} ${pLuz.texto}`;
+
+    // Determinar nivel general de alerta visual
+    let estadoGeneral = "ok";
+    let icono = "🌱";
+    let titulo = "Monitoreo Automático del Invernadero";
+
+    const niveles = [pTemp.nivel, pHum.nivel, pLuz.nivel];
+    if (niveles.includes("peligro")) {
+        estadoGeneral = "peligro";
+        icono = "🚨";
+        titulo = "¡Alerta Crítica en el Cultivo!";
+    } else if (niveles.includes("advertencia")) {
+        estadoGeneral = "advertencia";
+        icono = "⚠️";
+        titulo = "Atención: El cultivo requiere ajustes";
+    }
+
+    barraAlertas.className = `alertas-container estado-${estadoGeneral}`;
+    alertasIcono.textContent = icono;
+    alertasEstado.textContent = estadoGeneral.toUpperCase();
+    alertasTitulo.textContent = titulo;
+    alertasMensaje.textContent = mensajeCompleto;
+}
+// --------------------------------------------------------------------------
+
+// Evaluar y actualizar el estado de alerta personalizado de la planta (Configuración inferior)
 function evaluarEstadoPlanta(tempActual) {
     const nombre = document.getElementById('nombre-planta').value || "Planta";
     const tempOptima = parseFloat(document.getElementById('temp-optima').value) || 22;
@@ -97,7 +169,7 @@ function evaluarEstadoPlanta(tempActual) {
 
     displayNombre.innerText = nombre;
     elTempActual.innerText = `${tempActual.toFixed(1)} °C`;
-    elRangoOptimo.innerText = `${(tempOptima - tolAtencion).toFixed(1)} - ${(tempOptima + tolAtencion).toFixed(1)} °C`;
+    elRangoOptimo.innerText = `${(tempOptima - tolAtencion).toFixed(1)} a ${(tempOptima + tolAtencion).toFixed(1)} °C`;
 
     const diferencia = Math.abs(tempActual - tempOptima);
 
@@ -119,12 +191,15 @@ function evaluarEstadoPlanta(tempActual) {
     }
 }
 
-// Actualizar valores en KPIs, Alerta de Planta y Gráficos
+// Actualizar valores en KPIs, Alerta de Planta, Gráficos y Barra de Alertas Automática
 function actualizarUI(temperatura, humedadAmbiente, luminosidad) {
     const horaActual = new Date().toLocaleTimeString();
 
-    // Evaluar la alerta de la planta en tiempo real
+    // Evaluar la alerta inferior de la planta
     evaluarEstadoPlanta(temperatura);
+
+    // Actualizar la barra superior automática con las 3 partes combinadas para plantas
+    actualizarBarraAlertasAutomatica(temperatura, humedadAmbiente, luminosidad);
 
     // KPI Temperatura
     const elTemp = document.getElementById('val-temp');
@@ -161,16 +236,14 @@ function actualizarUI(temperatura, humedadAmbiente, luminosidad) {
             footerLuminosidad.innerHTML = "✔️ Luminosidad adecuada";
         }
     }
-    agregarDatorGraficoSeguro = agregarDatoGrafico(chartLuminosidad, horaActual, luminosidad);
+    agregarDatoGrafico(chartLuminosidad, horaActual, luminosidad);
 }
 
-// Petición a la API de la ESP32 (con respaldo de simulación si estás en tu casa sin la placa)
+// Petición a la ESP32 (con respaldo de simulación)
 function consultarDatosInvernadero() {
     fetch(API_URL)
         .then(res => res.json())
         .then(datos => {
-            // Suponiendo que la placa responde con: { temperatura: 25.5, humedad: 60, luz: 300 }
-            // (Ajustá los nombres de las propiedades de 'datos' si el profe usa otros, ej: datos.luz o datos.luminosidad)
             const temp = datos.temperatura !== undefined ? datos.temperatura : datos.temp;
             const hum = datos.humedad !== undefined ? datos.humedad : datos.hum;
             const luz = datos.luz !== undefined ? datos.luz : datos.luminosidad;
@@ -180,7 +253,6 @@ function consultarDatosInvernadero() {
         .catch(error => {
             console.warn("No se pudo conectar con la estación ESP32, activando simulación local:", error);
             
-            // Modo simulación local por si probás en tu casa sin conexión a la red del taller
             const tempSim = 20 + Math.random() * 8;
             const humASim = 50 + Math.random() * 15;
             const luzSim = 40 + Math.random() * 20;
@@ -192,7 +264,7 @@ function consultarDatosInvernadero() {
 window.addEventListener('load', () => {
     inicializarGraficos();
     consultarDatosInvernadero();
-    setInterval(consultarDatosInvernadero, 3000); // Cada 3 segundos como pidió el profe
+    setInterval(consultarDatosInvernadero, 3000); // Cada 3 segundos
 
     // Listener para actualizar en tiempo real si el usuario cambia los campos del formulario de la planta
     const inputsConfig = ['nombre-planta', 'temp-optima', 'tolerancia-alerta', 'tolerancia-critica'];
