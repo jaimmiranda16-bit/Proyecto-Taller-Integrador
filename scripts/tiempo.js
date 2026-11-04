@@ -1,22 +1,13 @@
-// =====================================================
-// 1. INICIALIZAR MAPA REAL (LEAFLET)
-// =====================================================
-
 // Centrado en Cutral Có / Neuquén con nivel de zoom inicial
 const map = L.map('map', {
     zoomControl: true
 }).setView([-38.9338, -69.2305], 8); 
 
-// Capa de mapa real 100% gratuita y pública (sin API Key ni marca de agua)
+// Capa de mapa real 100% gratuita y pública
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
-
-
-// =====================================================
-// 2. CANVAS Y PARTÍCULAS SUPERPUESTAS
-// =====================================================
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -41,6 +32,7 @@ const viento = { velocidad: 2, direccion: 0.3 }; // Dirección en radianes
 
 // Ajustar tamaño del canvas al contenedor
 function ajustarCanvas() {
+    if (!canvas || !canvas.parentNode) return;
     const rect = canvas.parentNode.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
 
@@ -67,18 +59,11 @@ function crearParticulas() {
     }
 }
 
-// =====================================================
-// 3. DIBUJAR RADARES DE LLUVIA EN COORDENADAS REALES
-// =====================================================
-
 function dibujarLluvia() {
     if (!mostrarLluvia) return;
 
     zonasLluvia.forEach(zona => {
-        // Convertir coordenadas geográficas a píxeles del Canvas
         const punto = map.latLngToContainerPoint([zona.lat, zona.lng]);
-        
-        // Calcular radio en píxeles según el nivel de zoom del mapa
         const puntoBorde = map.latLngToContainerPoint([zona.lat, zona.lng + (zona.radioKm / 111)]);
         const radioPx = Math.abs(puntoBorde.x - punto.x);
 
@@ -94,10 +79,6 @@ function dibujarLluvia() {
     });
 }
 
-// =====================================================
-// 4. DIBUJAR PARTÍCULAS DE VIENTO
-// =====================================================
-
 function actualizarYDibujarParticulas() {
     if (!mostrarParticulas) return;
 
@@ -107,7 +88,6 @@ function actualizarYDibujarParticulas() {
         p.y += Math.sin(p.vida * 0.05) * 0.2;
         p.vida++;
 
-        // Reaparecer partículas fuera de pantalla
         if (p.x > ancho + 20) p.x = -20;
         if (p.x < -20) p.x = ancho + 20;
         if (p.y > alto + 20) p.y = -20;
@@ -121,15 +101,12 @@ function actualizarYDibujarParticulas() {
             p.x - Math.cos(viento.direccion) * largo,
             p.y - Math.sin(viento.direccion) * largo
         );
-        ctx.strokeStyle = `rgba(50, 65, 85, ${p.opacidad})`;
+        // Tono claro para resaltar sobre el fondo oscuro del mapa
+        ctx.strokeStyle = `rgba(180, 200, 220, ${p.opacidad})`;
         ctx.lineWidth = 1.2;
         ctx.stroke();
     }
 }
-
-// =====================================================
-// 5. BUCLE DE ANIMACIÓN
-// =====================================================
 
 function animar() {
     ctx.clearRect(0, 0, ancho, alto);
@@ -140,27 +117,27 @@ function animar() {
     requestAnimationFrame(animar);
 }
 
-// =====================================================
-// 6. EVENTOS DE UI Y MAPA
-// =====================================================
-
 // Redimensionar canvas cuando se mueve el mapa o cambia el tamaño
 map.on('move resize zoom', ajustarCanvas);
 
-document.getElementById("particulas").addEventListener("change", function () {
-    mostrarParticulas = this.checked;
-});
+// Validaciones seguras para checkboxes opcionales
+const checkParticulas = document.getElementById("particulas");
+if (checkParticulas) {
+    checkParticulas.addEventListener("change", function () {
+        mostrarParticulas = this.checked;
+    });
+}
 
-document.getElementById("lluvia").addEventListener("change", function () {
-    mostrarLluvia = this.checked;
-});
+const checkLluvia = document.getElementById("lluvia");
+if (checkLluvia) {
+    checkLluvia.addEventListener("change", function () {
+        mostrarLluvia = this.checked;
+    });
+}
 
-// =====================================================
-// 7. CONTROL DE LA BARRA DE HORAS Y REPRODUCCIÓN
-// =====================================================
-
+// Control de barra de horas
 const horas = ["16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00"];
-let horaIndex = 10; // Empieza en 02:00
+let horaIndex = 10; 
 let reproduciendo = false;
 
 const botonPlay = document.getElementById("play");
@@ -176,20 +153,15 @@ if (botonPlay) {
 setInterval(() => {
     if (!reproduciendo || spansHoras.length === 0) return;
     
-    // Quitar marca activa previa
     spansHoras.forEach(s => s.classList.remove("hora-activa"));
-
     horaIndex = (horaIndex + 1) % horas.length;
 
-    // Marcar la hora actual
     if (spansHoras[horaIndex]) {
         spansHoras[horaIndex].classList.add("hora-activa");
     }
 }, 1000);
 
-// Inicialización general al cargar página
-window.addEventListener("load", () => {
-    ajustarCanvas();
-    crearParticulas();
-    animar();
-});
+// Inicialización segura del canvas y animación
+ajustarCanvas();
+crearParticulas();
+animar();

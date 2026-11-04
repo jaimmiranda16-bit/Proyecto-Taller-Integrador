@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+#map {
+    filter: brightness(0.6) invert(1) contrast(1.3) hue-rotate(200deg) saturate(0.3);
+}
 
 * {
     box-sizing: border-box;
